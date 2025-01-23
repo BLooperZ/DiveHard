@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://00wme7cxaflh"]
+[gd_scene load_steps=7 format=3 uid="uid://00wme7cxaflh"]
 
 [ext_resource type="PackedScene" uid="uid://ctbi7h6ft4iir" path="res://diver.tscn" id="1_hrf0i"]
 [ext_resource type="Script" path="res://aquarium.gd" id="1_ugybr"]
 [ext_resource type="PackedScene" uid="uid://bqsu0qf8h4qe" path="res://Collectible.tscn" id="3_jb6sj"]
 [ext_resource type="PackedScene" uid="uid://btujt6qgm881a" path="res://ship.tscn" id="4_02b1j"]
 [ext_resource type="PackedScene" uid="uid://clcbh40jfvc6g" path="res://waterline.tscn" id="5_8nevo"]
+[ext_resource type="PackedScene" uid="uid://qaw2snpcuxm4" path="res://PlayerScore.tscn" id="6_6v338"]
 
 [node name="Aquarium" type="Node2D"]
 script = ExtResource("1_ugybr")
@@ -34,3 +35,16 @@ BLOW = "p2_blow"
 
 [node name="Waterline" parent="." instance=ExtResource("5_8nevo")]
 position = Vector2(-17, 101)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PlayerScore" parent="CanvasLayer" instance=ExtResource("6_6v338")]
+position = Vector2(739, 30)
+player_name = "Diver1"
+
+[node name="PlayerScore2" parent="CanvasLayer" instance=ExtResource("6_6v338")]
+position = Vector2(322, 30)
+player_name = "Diver"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(641, 360)

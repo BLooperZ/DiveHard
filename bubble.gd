@@ -2,7 +2,7 @@ extends Area2D
 
 const MAX_SIZE = 0.8
 const INITIAL_SCALE = 0.01
-const GROWTH_RATE = 0.01
+const GROWTH_RATE = 0.6
 
 @onready var released = false
 @onready var velocity = Vector2(60 , 0)
@@ -14,6 +14,8 @@ const GROWTH_RATE = 0.01
 @onready var players = $Captured/Players
 
 @onready var crashed = false
+
+@onready var creator = null
 
 
 # Called when the node enters the scene tree for the first time.
@@ -37,13 +39,13 @@ func _physics_process(delta: float) -> void:
 	if crashed:
 		xscale *= 1.1
 	elif not released:
-		xscale = move_toward(xscale, MAX_SIZE, GROWTH_RATE)
+		xscale = move_toward(xscale, MAX_SIZE, GROWTH_RATE * delta)
 		position += velocity * delta
 		if xscale >= MAX_SIZE * 0.98:
 			release()
 	else:
 		velocity = lerp(velocity, Vector2(0, -120), 0.08)
-		xscale = move_toward(xscale, MAX_SIZE * 2, GROWTH_RATE * 0.1)
+		xscale = move_toward(xscale, MAX_SIZE * 2, GROWTH_RATE * 0.1 * delta)
 		position += velocity * delta
 	set_cscale(xscale)
 

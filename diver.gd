@@ -24,6 +24,7 @@ const MIN_Y = 128
 
 func _ready():
 	balloon.value = balloon.max_value
+	Manager.reset_score(name)
 
 func _physics_process(delta: float) -> void:
 	if caught:
@@ -60,7 +61,7 @@ func _physics_process(delta: float) -> void:
 		balloon.value += air_to_add
 
 	# Air management
-	reduce_air(1, delta)  # Normal air depletion
+	reduce_air(0.94 + direction.length(), delta)  # Normal air depletion
 
 	if bubble != null:
 		reduce_air(3, delta)  # Faster air depletion when bubble is active
@@ -95,6 +96,7 @@ func _input(event: InputEvent) -> void:
 		var bubble_scene = load("res://Bubble.tscn")
 		bubble = bubble_scene.instantiate()
 		add_child(bubble)
+		bubble.creator = name
 	if bubble != null and event.is_action_released(BLOW):
 		bubble.release()
 		bubble.velocity = 2 * velocity

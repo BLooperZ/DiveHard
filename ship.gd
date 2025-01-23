@@ -16,6 +16,8 @@ func get_air(delta, max_air):
 	var air = min(delta * AIR_TRANSFER_SPEED, left_air, max_air)
 	left_air -= air
 	progress.value = left_air
+	if left_air <= 0 and not Manager.ended:
+		Manager.call_end_game()
 	return air
 
 func _on_body_entered(body):
