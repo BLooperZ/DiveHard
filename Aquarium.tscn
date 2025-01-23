@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://00wme7cxaflh"]
+[gd_scene load_steps=8 format=3 uid="uid://00wme7cxaflh"]
 
 [ext_resource type="PackedScene" uid="uid://ctbi7h6ft4iir" path="res://diver.tscn" id="1_hrf0i"]
 [ext_resource type="Script" path="res://aquarium.gd" id="1_ugybr"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://btujt6qgm881a" path="res://ship.tscn" id="4_02b1j"]
 [ext_resource type="PackedScene" uid="uid://clcbh40jfvc6g" path="res://waterline.tscn" id="5_8nevo"]
 [ext_resource type="PackedScene" uid="uid://qaw2snpcuxm4" path="res://PlayerScore.tscn" id="6_6v338"]
+[ext_resource type="PackedScene" uid="uid://cru8h4n64v5rb" path="res://Wall.tscn" id="7_4mbf7"]
 
 [node name="Aquarium" type="Node2D"]
 script = ExtResource("1_ugybr")
@@ -48,3 +49,13 @@ player_name = "Diver"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(641, 360)
+
+[node name="Wall" parent="." instance=ExtResource("7_4mbf7")]
+
+[node name="Wall2" parent="." instance=ExtResource("7_4mbf7")]
+position = Vector2(1282, 852)
+rotation = 3.14159
+
+[node name="Wall3" parent="." instance=ExtResource("7_4mbf7")]
+position = Vector2(302, 727)
+rotation = 4.71239

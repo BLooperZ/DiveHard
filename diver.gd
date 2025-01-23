@@ -54,7 +54,15 @@ func _physics_process(delta: float) -> void:
 	if global_position.y < MIN_Y:
 		global_position.y = MIN_Y
 
-	move_and_slide()
+	var collision = move_and_collide(velocity * delta)
+	if collision:
+		print(collision)
+		var normal = collision.get_normal()
+		if abs(normal.y) >= abs(normal.x):
+			velocity = velocity.slide(normal)
+		else:
+			velocity = velocity.bounce(normal)
+		#velocity = -velocity  # .slide(collision.get_normal())
 
 	if connected_ship != null:
 		var air_to_add = connected_ship.get_air(delta, balloon.max_value - balloon.value)
