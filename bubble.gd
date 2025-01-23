@@ -6,25 +6,35 @@ const GROWTH_RATE = 0.01
 
 @onready var released = false
 @onready var velocity = Vector2(60 , 0)
+@onready var sprite = $Sprite
+@onready var collision = $CollisionShape2D
+@onready var xscale = INITIAL_SCALE
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	scale = Vector2.ONE * INITIAL_SCALE
+	set_cscale(INITIAL_SCALE)
+	#sprite.scale = Vector2.ONE * INITIAL_SCALE
+	#collision.scale = Vector2.ONE * INITIAL_SCALE
+
+func set_cscale(nscale) -> void:
+	sprite.scale = 0.5 * Vector2(nscale, nscale)
+	collision.scale = Vector2(nscale, nscale)
 
 func release() -> void:
+	collision_layer = 2
 	released = true
 	Manager.detach_bubble(self)
+	sprite.modulate = Color(255, 0, 10, 0.3)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void: 
+func _process(delta: float) -> void:
 	if not released:
-		scale.x = move_toward(scale.x, MAX_SIZE, GROWTH_RATE)
-		scale.y = move_toward(scale.y, MAX_SIZE, GROWTH_RATE)
+		xscale = move_toward(xscale, MAX_SIZE, GROWTH_RATE)
 		position += velocity * delta
-		if scale.x >= MAX_SIZE * 0.98:
+		if xscale >= MAX_SIZE * 0.98:
 			release()
 	else:
 		velocity = lerp(velocity, Vector2(0, -120), 0.08)
-		scale.x = move_toward(scale.x, MAX_SIZE * 2, GROWTH_RATE * 0.1)
-		scale.y = move_toward(scale.y, MAX_SIZE * 2, GROWTH_RATE * 0.1)
+		xscale = move_toward(xscale, MAX_SIZE * 2, GROWTH_RATE * 0.1)
 		position += velocity * delta
+	set_cscale(xscale)

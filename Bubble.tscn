@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://di0gfqrvgngl0" path="res://Frame 4 (2).png" id="2_rb8up"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3moul"]
+radius = 40.0
 
 [node name="Bubble" type="Area2D"]
 position = Vector2(45, 0)
