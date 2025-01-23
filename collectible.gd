@@ -11,9 +11,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	global_scale = Vector2(1.0, 1.0)
 	if caught:
-		print(position, global_position)
 		position = lerp(position, Vector2(0.0, 0.0), 0.1)
 
 func _on_area_entered(area: Area2D) -> void:

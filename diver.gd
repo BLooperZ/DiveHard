@@ -7,6 +7,7 @@ const DRAG = 0.97
 
 @onready var bubble = null
 @onready var balloon = $Ballon
+@onready var connected_ship = null
 
 
 func _ready():
@@ -16,8 +17,9 @@ func _physics_process(delta: float) -> void:
 	if bubble != null and bubble.released:
 		bubble = null
 
-	# Handle movement
-	var direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	# Get the input direction and handle the movement/deceleration.
+	var direction := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+
 	var target_velocity = velocity + direction * SPEED
 	velocity = lerp(velocity, target_velocity, SMOOTHNESS)
 	velocity *= DRAG
@@ -32,6 +34,11 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
+	if connected_ship != null:
+		var air_to_add = connected_ship.get_air(delta, balloon.max_value - balloon.value)
+		print("AIR_TO_ADD" + str(air_to_add))
+		balloon.value += air_to_add
+
 	# Air management
 	reduce_air(1, delta)  # Normal air depletion
 
@@ -44,7 +51,7 @@ func reduce_air(co, delta):
 	balloon.scale = Vector2(0.7 * balloon_scale, 0.2 * balloon_scale)
 	if balloon.value <= 0:
 		die()
-	print(balloon.value)
+	#print(balloon.value)
 
 func add_air(rate: float, delta: float):
 	balloon.value = lerp(balloon.value, balloon.max_value, rate* delta)
@@ -53,11 +60,10 @@ func add_air(rate: float, delta: float):
 
 
 func die():
-	print("die")
+	pass
 
 func _input(event: InputEvent) -> void:
 	if bubble == null and event.is_action_pressed("ui_accept"):
-		
 		var bubble_scene = load("res://Bubble.tscn")
 		bubble = bubble_scene.instantiate()
 		add_child(bubble)
@@ -65,3 +71,10 @@ func _input(event: InputEvent) -> void:
 		bubble.release()
 		bubble.velocity = 2 * velocity
 		bubble = null
+
+func connect_ship(ship):
+	connected_ship = ship
+
+func disconnect_ship(ship):
+	if connected_ship == ship:
+		connected_ship = null

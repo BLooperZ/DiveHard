@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://ctbi7h6ft4iir"]
+[gd_scene load_steps=4 format=3 uid="uid://ctbi7h6ft4iir"]
 
 [ext_resource type="Texture2D" uid="uid://hpf5iqa2qysf" path="res://icon.svg" id="1_3oray"]
 [ext_resource type="Script" path="res://diver.gd" id="1_w27f1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ncm18"]
 
 [node name="Diver" type="CharacterBody2D"]
 script = ExtResource("1_w27f1")
@@ -9,9 +11,6 @@ script = ExtResource("1_w27f1")
 [node name="Sprite" type="Sprite2D" parent="."]
 scale = Vector2(0.7, 0.2)
 texture = ExtResource("1_3oray")
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-3, -5, 7, -4, 18, -1, 18, 3, 3, 5, -8, 5, -15, 2, -18, 0, -18, -3)
 
 [node name="Ballon" type="TextureProgressBar" parent="."]
 offset_left = -49.0
@@ -25,3 +24,6 @@ texture_under = ExtResource("1_3oray")
 texture_progress = ExtResource("1_3oray")
 tint_under = Color(0.97, 0.646667, 0, 1)
 tint_progress = Color(0, 1, 1, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ncm18")
