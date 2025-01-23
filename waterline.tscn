@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://c5qqpxs3wqkpu"]
+
+[ext_resource type="Script" path="res://boundary.gd" id="1_lw7pe"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ew0yd"]
+distance = -40.0
+
+[node name="Waterline" type="Node2D"]
+position = Vector2(4, 0)
+metadata/_edit_group_ = true
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource("1_lw7pe")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(164, -40)
+shape = SubResource("WorldBoundaryShape2D_ew0yd")
+
+[node name="Line2D" type="Line2D" parent="Area2D"]
+position = Vector2(-3, 2)
+points = PackedVector2Array(3, -2, 1289, 2)
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_Area2D_body_entered"]
