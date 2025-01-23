@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://j6erciva48g1"]
+
+[ext_resource type="Script" path="res://ship.gd" id="1_pmyhc"]
+[ext_resource type="Texture2D" uid="uid://hpf5iqa2qysf" path="res://icon.svg" id="1_uvk0p"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fa21n"]
+
+[node name="ship" type="Node2D"]
+position = Vector2(290, 94)
+metadata/_edit_group_ = true
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource("1_pmyhc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(2, 2)
+scale = Vector2(15, 15)
+shape = SubResource("CircleShape2D_fa21n")
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+position = Vector2(1.00003, -1)
+scale = Vector2(1.75, 0.5)
+texture = ExtResource("1_uvk0p")
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_Area2D_body_entered"]
