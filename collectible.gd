@@ -2,7 +2,7 @@ extends Area2D
 
 @onready var caught = false
 
-@export var min_scale = 0.4
+@export var min_scale = 0.7
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -14,9 +14,10 @@ func _physics_process(delta: float) -> void:
 	if caught:
 		position = lerp(position, Vector2(0.0, 0.0), 0.1)
 
+
 func _on_area_entered(area: Area2D) -> void:
-	if not caught and area.scale.x >= min_scale:
+	if not caught and area.xscale >= min_scale:
 		var gpos = global_position
-		self.reparent(area)
+		self.reparent(area.treasures)
 		global_position = gpos
 		caught = true

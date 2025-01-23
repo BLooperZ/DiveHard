@@ -10,6 +10,12 @@ const GROWTH_RATE = 0.01
 @onready var collision = $CollisionShape2D
 @onready var xscale = INITIAL_SCALE
 
+@onready var treasures = $Captured/Treasures
+@onready var players = $Captured/Players
+
+@onready var crashed = false
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	set_cscale(INITIAL_SCALE)
@@ -27,8 +33,10 @@ func release() -> void:
 	sprite.modulate = Color(255, 0, 10, 0.3)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	if not released:
+func _physics_process(delta: float) -> void:
+	if crashed:
+		xscale *= 1.1
+	elif not released:
 		xscale = move_toward(xscale, MAX_SIZE, GROWTH_RATE)
 		position += velocity * delta
 		if xscale >= MAX_SIZE * 0.98:
@@ -38,3 +46,18 @@ func _process(delta: float) -> void:
 		xscale = move_toward(xscale, MAX_SIZE * 2, GROWTH_RATE * 0.1)
 		position += velocity * delta
 	set_cscale(xscale)
+
+
+func _on_body_entered(body: Node2D) -> void:
+	if not released:
+		body.on_area_entered(self)
+#
+
+func crash():
+	crashed = true
+
+func explode():
+	for child in treasures.get_children():
+		print(child)
+		child.queue_free()
+	Manager.take_captured(self)

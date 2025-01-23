@@ -1,23 +1,36 @@
-[gd_scene load_steps=5 format=3 uid="uid://00wme7cxaflh"]
+[gd_scene load_steps=6 format=3 uid="uid://00wme7cxaflh"]
 
 [ext_resource type="PackedScene" uid="uid://ctbi7h6ft4iir" path="res://diver.tscn" id="1_hrf0i"]
 [ext_resource type="Script" path="res://aquarium.gd" id="1_ugybr"]
 [ext_resource type="PackedScene" uid="uid://bqsu0qf8h4qe" path="res://Collectible.tscn" id="3_jb6sj"]
 [ext_resource type="PackedScene" uid="uid://btujt6qgm881a" path="res://ship.tscn" id="4_02b1j"]
+[ext_resource type="PackedScene" uid="uid://clcbh40jfvc6g" path="res://waterline.tscn" id="5_8nevo"]
 
 [node name="Aquarium" type="Node2D"]
 script = ExtResource("1_ugybr")
 
-[node name="Diver" parent="." instance=ExtResource("1_hrf0i")]
+[node name="Diver1" parent="." instance=ExtResource("1_hrf0i")]
 position = Vector2(204, 236)
 
 [node name="Collectible" parent="." instance=ExtResource("3_jb6sj")]
 position = Vector2(479, 279)
+min_scale = 0.565
 
 [node name="Collectible2" parent="." instance=ExtResource("3_jb6sj")]
 position = Vector2(870, 267)
 scale = Vector2(1.4, 1.4)
-min_scale = 0.7
+min_scale = 0.495
 
 [node name="ship" parent="." instance=ExtResource("4_02b1j")]
 position = Vector2(530, 74)
+
+[node name="Diver" parent="." instance=ExtResource("1_hrf0i")]
+position = Vector2(986, 121)
+UP = "p2_up"
+DOWN = "p2_down"
+LEFT = "p2_left"
+RIGHT = "p2_right"
+BLOW = "p2_blow"
+
+[node name="Waterline" parent="." instance=ExtResource("5_8nevo")]
+position = Vector2(-17, 101)

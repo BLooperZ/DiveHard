@@ -10,6 +10,8 @@ position = Vector2(247, 85)
 metadata/_edit_group_ = true
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_layer = 128
+collision_mask = 2
 script = ExtResource("1_pmyhc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]

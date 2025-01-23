@@ -8,6 +8,7 @@ radius = 40.0
 
 [node name="Bubble" type="Area2D"]
 position = Vector2(45, 0)
+collision_mask = 18
 script = ExtResource("1_txtd1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -17,3 +18,12 @@ shape = SubResource("CircleShape2D_3moul")
 modulate = Color(1, 1, 1, 0.192157)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_rb8up")
+
+[node name="Captured" type="Node2D" parent="."]
+
+[node name="Treasures" type="Node2D" parent="Captured"]
+
+[node name="Players" type="Node2D" parent="Captured"]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
