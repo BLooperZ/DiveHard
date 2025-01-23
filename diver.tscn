@@ -12,3 +12,16 @@ texture = ExtResource("1_3oray")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-3, -5, 7, -4, 18, -1, 18, 3, 3, 5, -8, 5, -15, 2, -18, 0, -18, -3)
+
+[node name="Ballon" type="TextureProgressBar" parent="."]
+offset_left = -49.0
+offset_top = -32.0
+offset_right = 79.0
+offset_bottom = 96.0
+scale = Vector2(0.7, 0.2)
+max_value = 2048.0
+value = 76.0
+texture_under = ExtResource("1_3oray")
+texture_progress = ExtResource("1_3oray")
+tint_under = Color(0.97, 0.646667, 0, 1)
+tint_progress = Color(0, 1, 1, 1)
