@@ -17,10 +17,10 @@ scale = Vector2(0.38, 0.4)
 texture = ExtResource("2_g0l5t")
 
 [node name="Diver1" parent="." instance=ExtResource("1_hrf0i")]
-position = Vector2(204, 236)
+position = Vector2(920, 200)
 
 [node name="Diver2" parent="." instance=ExtResource("1_hrf0i")]
-position = Vector2(920, 197)
+position = Vector2(360, 200)
 UP = "p2_up"
 DOWN = "p2_down"
 LEFT = "p2_left"
@@ -37,11 +37,11 @@ position = Vector2(0, 101)
 follow_viewport_enabled = true
 
 [node name="PlayerScore" parent="CanvasLayer" instance=ExtResource("6_6v338")]
-position = Vector2(1000, 0)
+position = Vector2(280, 0)
 player_name = "Diver2"
 
 [node name="PlayerScore2" parent="CanvasLayer" instance=ExtResource("6_6v338")]
-position = Vector2(280, 0)
+position = Vector2(1000, 0)
 player_name = "Diver1"
 
 [node name="Camera2D" type="Camera2D" parent="."]
