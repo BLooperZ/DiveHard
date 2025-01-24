@@ -8,4 +8,4 @@ func _ready() -> void:
 	
 
 func on_score_changed(score_player_name):
-	label.text = str(Manager.scores[player_name])
+		label.text = str(Manager.scores[player_name])

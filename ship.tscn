@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://btujt6qgm881a"]
+[gd_scene load_steps=6 format=3 uid="uid://btujt6qgm881a"]
 
 [ext_resource type="Script" path="res://ship.gd" id="1_pmyhc"]
 [ext_resource type="Texture2D" uid="uid://hpf5iqa2qysf" path="res://icon.svg" id="1_uvk0p"]
+[ext_resource type="Texture2D" uid="uid://cqgc2rlfhs8op" path="res://Paper Boat.png" id="3_ep2j4"]
+[ext_resource type="Texture2D" uid="uid://b812q6uirghr2" path="res://Dude.png" id="4_7ytti"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fa21n"]
 
@@ -19,21 +21,41 @@ position = Vector2(2, 2)
 scale = Vector2(15, 15)
 shape = SubResource("CircleShape2D_fa21n")
 
-[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
-position = Vector2(1.00003, -1)
-scale = Vector2(1.75, 0.5)
-texture = ExtResource("1_uvk0p")
-
 [node name="TextureProgressBar" type="TextureProgressBar" parent="Area2D"]
+visible = false
 offset_left = -112.0
-offset_top = -34.0
+offset_top = 63.37
 offset_right = 16.0
-offset_bottom = 94.0
+offset_bottom = 191.37
 scale = Vector2(1.75, 0.5)
 texture_under = ExtResource("1_uvk0p")
 texture_progress = ExtResource("1_uvk0p")
 tint_under = Color(0.968627, 0.647059, 0, 1)
 tint_progress = Color(0, 1, 1, 1)
+
+[node name="PaperBoat" type="Sprite2D" parent="Area2D"]
+visible = false
+position = Vector2(0, 14.21)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("3_ep2j4")
+
+[node name="Dude" type="Sprite2D" parent="Area2D"]
+visible = false
+position = Vector2(15, 38.725)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("4_7ytti")
+
+[node name="TextureProgressBar2" type="TextureProgressBar" parent="Area2D"]
+offset_left = -112.0
+offset_top = 63.37
+offset_right = 16.0
+offset_bottom = 191.37
+scale = Vector2(0.75, 0.75)
+pivot_offset = Vector2(-91.205, -801.035)
+fill_mode = 3
+texture_under = ExtResource("4_7ytti")
+texture_progress = ExtResource("4_7ytti")
+tint_under = Color(0.941176, 0.427451, 0.737255, 1)
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
 [connection signal="body_exited" from="Area2D" to="Area2D" method="_on_body_exited"]

@@ -5,13 +5,14 @@ const ROTATION_SPEED = 3.0
 const SMOOTHNESS = 0.4
 const DRAG = 0.97
 
-const MIN_Y = 128
+const MIN_Y = 132
 
 @onready var bubble = null
-@onready var balloon = $Ballon
+@onready var balloon = $SubA2
 @onready var connected_ship = null
 
 @onready var caught = false
+@onready var sprite: Sprite2D = $SubA
 
 @export var min_scale = 0.6
 
@@ -21,10 +22,17 @@ const MIN_Y = 128
 @export var RIGHT = "p1_right"
 @export var BLOW = "p1_blow"
 
+var t
 
 func _ready():
 	balloon.value = balloon.max_value
 	Manager.reset_score(name)
+	t = randf() * 2 * PI
+
+func _process(delta: float) -> void:
+	t += delta
+	sprite.position.y = 5 * sin(t)
+	balloon.position.y = 5 * sin(t)
 
 func _physics_process(delta: float) -> void:
 	if caught:
@@ -77,16 +85,16 @@ func _physics_process(delta: float) -> void:
 
 func reduce_air(co, delta):
 	balloon.value -= 32 * co * delta
-	var balloon_scale = 0.9 + 0.4 * (balloon.value / balloon.max_value)
-	balloon.scale = Vector2(0.7 * balloon_scale, 0.2 * balloon_scale)
+	#var balloon_scale = 0.9 + 0.4 * (balloon.value / balloon.max_value)
+	#balloon.scale = Vector2(0.7 * balloon_scale, 0.2 * balloon_scale)
 	if balloon.value <= 0:
 		die()
 	#print(balloon.value)
 
 func add_air(rate: float, delta: float):
 	balloon.value = lerp(balloon.value, balloon.max_value, rate* delta)
-	var balloon_scale = 0.9 + 0.4 * (balloon.value / balloon.max_value)
-	balloon.scale = Vector2(0.7 * balloon_scale, 0.2 * balloon_scale)
+	#var balloon_scale = 0.9 + 0.4 * (balloon.value / balloon.max_value)
+	#balloon.scale = Vector2(0.7 * balloon_scale, 0.2 * balloon_scale)
 
 
 func die():

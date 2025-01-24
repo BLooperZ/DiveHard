@@ -9,6 +9,7 @@ const GROWTH_RATE = 0.6
 @onready var sprite = $Sprite
 @onready var collision = $CollisionShape2D
 @onready var xscale = INITIAL_SCALE
+@onready var audio_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 @onready var treasures = $Captured/Treasures
 @onready var players = $Captured/Players
@@ -17,6 +18,7 @@ const GROWTH_RATE = 0.6
 
 @onready var creator = null
 
+var t = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -32,7 +34,9 @@ func release() -> void:
 	collision_layer = 2
 	released = true
 	Manager.detach_bubble(self)
-	sprite.modulate = Color(255, 0, 10, 0.3)
+	sprite.modulate.a = 1
+	audio_player.stop()
+	#sprite.modulate = Color(255, 0, 10, 0.3)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
@@ -47,6 +51,8 @@ func _physics_process(delta: float) -> void:
 		velocity = lerp(velocity, Vector2(0, -120), 0.08)
 		xscale = move_toward(xscale, MAX_SIZE * 2, GROWTH_RATE * 0.1 * delta)
 		position += velocity * delta
+		t += delta
+		xscale += 0.001 * cos(8 * t)
 	set_cscale(xscale)
 
 
@@ -62,4 +68,8 @@ func explode():
 	for child in treasures.get_children():
 		print(child)
 		child.queue_free()
+	
+	audio_player.stream = load("res://explode_bubble.wav")
+	audio_player.pitch_scale = (1.5 - xscale)
+	audio_player.play()
 	Manager.take_captured(self)

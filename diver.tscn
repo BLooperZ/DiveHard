@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://ctbi7h6ft4iir"]
+[gd_scene load_steps=5 format=3 uid="uid://ctbi7h6ft4iir"]
 
 [ext_resource type="Texture2D" uid="uid://hpf5iqa2qysf" path="res://icon.svg" id="1_3oray"]
 [ext_resource type="Script" path="res://diver.gd" id="1_w27f1"]
+[ext_resource type="Texture2D" uid="uid://o2mf3edbbemn" path="res://Sub A.png" id="3_5hu5j"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ncm18"]
 
@@ -10,10 +11,15 @@ collision_layer = 2
 script = ExtResource("1_w27f1")
 
 [node name="Sprite" type="Sprite2D" parent="."]
+visible = false
 scale = Vector2(0.7, 0.2)
 texture = ExtResource("1_3oray")
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ncm18")
+
 [node name="Ballon" type="TextureProgressBar" parent="."]
+visible = false
 offset_left = -49.0
 offset_top = -32.0
 offset_right = 79.0
@@ -26,5 +32,26 @@ texture_progress = ExtResource("1_3oray")
 tint_under = Color(0.97, 0.646667, 0, 1)
 tint_progress = Color(0, 1, 1, 1)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_ncm18")
+[node name="SubA" type="Sprite2D" parent="."]
+position = Vector2(-11, -17)
+scale = Vector2(0.2, 0.405)
+texture = ExtResource("3_5hu5j")
+
+[node name="SubA2" type="TextureProgressBar" parent="."]
+z_index = 10
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_right = 741.0
+offset_bottom = 294.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.2, 0.405)
+pivot_offset = Vector2(-105.99, -103.335)
+max_value = 2048.0
+fill_mode = 3
+texture_under = ExtResource("3_5hu5j")
+texture_progress = ExtResource("3_5hu5j")
+tint_under = Color(0.941176, 0.427451, 0.737255, 1)
