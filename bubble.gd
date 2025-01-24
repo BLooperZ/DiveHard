@@ -17,6 +17,7 @@ const GROWTH_RATE = 0.6
 @onready var crashed = false
 
 @onready var creator = null
+@onready var capturing = true
 
 var t = 0
 
@@ -38,6 +39,9 @@ func release() -> void:
 	audio_player.stop()
 	#sprite.modulate = Color(255, 0, 10, 0.3)
 
+func capture():
+	capturing = true
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	if crashed:
@@ -53,6 +57,8 @@ func _physics_process(delta: float) -> void:
 		position += velocity * delta
 		t += delta
 		xscale += 0.001 * cos(8 * t)
+	if capturing:
+		sprite.scale += Vector2.ONE * 0.5 * max(0, cos(16 * t))
 	set_cscale(xscale)
 
 

@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://ctbi7h6ft4iir"]
+[gd_scene load_steps=6 format=3 uid="uid://ctbi7h6ft4iir"]
 
 [ext_resource type="Texture2D" uid="uid://hpf5iqa2qysf" path="res://icon.svg" id="1_3oray"]
 [ext_resource type="Script" path="res://diver.gd" id="1_w27f1"]
 [ext_resource type="Texture2D" uid="uid://o2mf3edbbemn" path="res://Sub A.png" id="3_5hu5j"]
+[ext_resource type="Texture2D" uid="uid://cd78p8euvjqkd" path="res://Bubb.png" id="4_32x3h"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ncm18"]
 
@@ -55,3 +56,22 @@ fill_mode = 3
 texture_under = ExtResource("3_5hu5j")
 texture_progress = ExtResource("3_5hu5j")
 tint_under = Color(0.941176, 0.427451, 0.737255, 1)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(-98, 30)
+explosiveness = 0.28
+texture = ExtResource("4_32x3h")
+emission_shape = 1
+emission_sphere_radius = 19.73
+spread = 23.91
+gravity = Vector2(-500, 100)
+radial_accel_min = -53.65
+radial_accel_max = 13.01
+damping_min = 8.1
+damping_max = 29.268
+angle_min = -526.8
+angle_max = 281.0
+scale_amount_min = 0.1
+scale_amount_max = 0.1
+anim_speed_min = 20.81
+anim_speed_max = 25.06

@@ -14,7 +14,7 @@ const MIN_Y = 132
 @onready var caught = false
 @onready var sprite: Sprite2D = $SubA
 
-@export var min_scale = 0.6
+@export var min_scale = 0.5
 
 @export var UP = "p1_up"
 @export var DOWN = "p1_down"
@@ -129,6 +129,7 @@ func disconnect_ship(ship):
 func on_area_entered(area: Area2D) -> void:
 	if not caught and area.xscale >= min_scale:
 		var gpos = global_position
+		area.capture()
 		self.reparent(area.players)
 		global_position = gpos
 		caught = true

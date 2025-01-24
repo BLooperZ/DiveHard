@@ -10,13 +10,18 @@ const AIR_TRANSFER_SPEED = 300.0
 
 @onready var t = 0.0
 
+@onready var filling = 0
+
 func _ready():
 	progress.max_value = left_air
+	left_air -= 2.5 * BALLON_CAPACITY
 	progress.value = left_air
 
 func _process(delta: float) -> void:
 	t += delta
 	position.y = 5 * sin(t)
+	if filling > 0:
+		scale = Vector2.ONE + max(0, 0.05 * sin(8 * t)) * Vector2.ONE
 	#rotation = lerp(rotation, )
 
 func get_air(delta, max_air):
@@ -29,6 +34,8 @@ func get_air(delta, max_air):
 
 func _on_body_entered(body):
 	body.connect_ship(self)
+	filling += 1
 
 func _on_body_exited(body: Node2D) -> void:
 	body.disconnect_ship(self)
+	filling -= 1
