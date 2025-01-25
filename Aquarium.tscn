@@ -1,12 +1,16 @@
-[gd_scene load_steps=8 format=3 uid="uid://00wme7cxaflh"]
+[gd_scene load_steps=12 format=3 uid="uid://00wme7cxaflh"]
 
 [ext_resource type="PackedScene" uid="uid://ctbi7h6ft4iir" path="res://diver.tscn" id="1_hrf0i"]
 [ext_resource type="Script" path="res://aquarium.gd" id="1_ugybr"]
 [ext_resource type="Texture2D" uid="uid://buri36a8ywjwq" path="res://Aquarium BG (2).png" id="2_g0l5t"]
+[ext_resource type="Texture2D" uid="uid://cbm86q1b83u81" path="res://Play Again.png" id="3_oyejj"]
 [ext_resource type="PackedScene" uid="uid://btujt6qgm881a" path="res://ship.tscn" id="4_02b1j"]
+[ext_resource type="Texture2D" uid="uid://b8wqoacridtch" path="res://Blur.png" id="4_5xkpr"]
 [ext_resource type="PackedScene" uid="uid://clcbh40jfvc6g" path="res://waterline.tscn" id="5_8nevo"]
 [ext_resource type="PackedScene" uid="uid://qaw2snpcuxm4" path="res://PlayerScore.tscn" id="6_6v338"]
 [ext_resource type="PackedScene" uid="uid://cru8h4n64v5rb" path="res://Wall.tscn" id="7_4mbf7"]
+[ext_resource type="AudioStream" uid="uid://dvy3usys23jyx" path="res://bubble_music2.ogg" id="8_3fx4n"]
+[ext_resource type="Texture2D" uid="uid://dl2y10gm261b2" path="res://Fog.png" id="10_omwie"]
 
 [node name="Aquarium" type="Node2D"]
 script = ExtResource("1_ugybr")
@@ -15,6 +19,17 @@ script = ExtResource("1_ugybr")
 position = Vector2(635, 392)
 scale = Vector2(0.38, 0.4)
 texture = ExtResource("2_g0l5t")
+
+[node name="PlayAgain" type="Sprite2D" parent="."]
+position = Vector2(640, 427.325)
+scale = Vector2(0.38, 0.4)
+texture = ExtResource("3_oyejj")
+
+[node name="PlayAgain2" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.560784)
+position = Vector2(640, 424.01)
+scale = Vector2(0.38, 0.4)
+texture = ExtResource("4_5xkpr")
 
 [node name="Diver1" parent="." instance=ExtResource("1_hrf0i")]
 position = Vector2(920, 200)
@@ -56,3 +71,13 @@ rotation = 3.14159
 [node name="Wall3" parent="." instance=ExtResource("7_4mbf7")]
 position = Vector2(302, 727)
 rotation = 4.71239
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_3fx4n")
+
+[node name="Fog" type="Sprite2D" parent="."]
+modulate = Color(0.91, 0.9115, 1, 1)
+z_index = 200
+position = Vector2(643.225, 420.75)
+scale = Vector2(0.38, 0.4)
+texture = ExtResource("10_omwie")

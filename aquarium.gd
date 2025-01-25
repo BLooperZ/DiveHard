@@ -1,4 +1,7 @@
 extends Node2D
+@onready var play_again: Sprite2D = $PlayAgain
+@onready var fog: Sprite2D = $Fog
+@onready var play_again_2: Sprite2D = $PlayAgain2
 
 
 # Called when the node enters the scene tree for the first time.
@@ -6,11 +9,23 @@ func _ready() -> void:
 	Manager.connect("bubble_released", on_bubble_detach)
 	Manager.connect("players_released", on_player_detach)
 	Manager.connect("end_game", on_end_game)
+	
+	fog.modulate.a = 0
+	play_again.modulate.a = 0
+	play_again_2.modulate.a = 0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	if Manager.ended:
-		Engine.time_scale *= 0.95
+		Engine.time_scale *= 0.957
+		fog.modulate.a = lerp(fog.modulate.a, 1.0, 0.02)
+		play_again.modulate.a = lerp(play_again.modulate.a, 1.0, 0.001)
+		play_again_2.modulate.a = lerp(play_again_2.modulate.a, 1.0, 0.03)
+
+	if play_again_2.modulate.a > 0.98 and Input.is_anything_pressed():
+		Manager.ended = false
+		Engine.time_scale = 1.0
+		get_tree().reload_current_scene()
 
 func on_bubble_detach(bubble):
 	bubble.reparent(self)
