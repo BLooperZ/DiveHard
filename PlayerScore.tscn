@@ -1,16 +1,76 @@
-[gd_scene load_steps=2 format=3 uid="uid://qaw2snpcuxm4"]
+[gd_scene load_steps=6 format=3 uid="uid://qaw2snpcuxm4"]
 
 [ext_resource type="Script" path="res://player_score.gd" id="1_7lapk"]
+[ext_resource type="Texture2D" uid="uid://cd78p8euvjqkd" path="res://Bubb.png" id="3_4i64e"]
+[ext_resource type="FontFile" uid="uid://c6aod4glfq7rk" path="res://fonts/RubikBubbles-Regular.ttf" id="3_huslm"]
+[ext_resource type="FontFile" uid="uid://dsoahqfm5cisl" path="res://fonts/RubikPuddles-Regular.ttf" id="4_u5pdb"]
+[ext_resource type="FontFile" uid="uid://dqkm2ddkj6los" path="res://fonts/RubikMoonrocks-Regular.ttf" id="5_hnav4"]
 
 [node name="PlayerScore" type="Node2D"]
 script = ExtResource("1_7lapk")
 
-[node name="Label" type="Label" parent="."]
+[node name="Bubb" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -2)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("3_4i64e")
+
+[node name="Labels" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_top = -25.34
+offset_right = 40.0
+offset_bottom = 14.66
+metadata/_edit_use_anchors_ = true
+
+[node name="Label2" type="Label" parent="Labels"]
+visible = false
+modulate = Color(0.75, 0.105, 0.105, 1)
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -36.0
+offset_top = -59.5
+offset_right = 36.0
+offset_bottom = 59.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 35
+theme_override_fonts/font = ExtResource("3_huslm")
+theme_override_font_sizes/font_size = 120
+text = "0"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="Labels"]
+modulate = Color(0.578892, 0.855187, 1, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -36.0
+offset_top = -59.5
+offset_right = 36.0
+offset_bottom = 59.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_u5pdb")
+theme_override_font_sizes/font_size = 120
+text = "0"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="Labels"]
+modulate = Color(0.97, 0.71392, 0.2716, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -36.0
+offset_top = -59.5
+offset_right = 36.0
+offset_bottom = 59.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("5_hnav4")
+theme_override_font_sizes/font_size = 120
 text = "0"
 horizontal_alignment = 1
