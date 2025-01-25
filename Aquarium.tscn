@@ -33,9 +33,16 @@ texture = ExtResource("4_5xkpr")
 
 [node name="Diver1" parent="." instance=ExtResource("1_hrf0i")]
 position = Vector2(920, 200)
+min_scale = 0.5
+UP = "p1_up"
+DOWN = "p1_down"
+LEFT = "p1_left"
+RIGHT = "p1_right"
+BLOW = "p1_blow"
 
 [node name="Diver2" parent="." instance=ExtResource("1_hrf0i")]
 position = Vector2(360, 200)
+min_scale = 0.5
 UP = "p2_up"
 DOWN = "p2_down"
 LEFT = "p2_left"
@@ -61,6 +68,7 @@ player_name = "Diver1"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(641, 360)
+zoom = Vector2(0.8, 0.8)
 
 [node name="Wall" parent="." instance=ExtResource("7_4mbf7")]
 
