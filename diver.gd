@@ -5,7 +5,7 @@ const ROTATION_SPEED = 3.0
 const SMOOTHNESS = 0.4
 const DRAG = 0.97
 
-const MIN_Y = 132
+const MIN_Y = 130
 @onready var particles: CPUParticles2D = $CPUParticles2D
 
 @onready var bubble = null
@@ -65,7 +65,8 @@ func _physics_process(delta: float) -> void:
 		rotation = lerp_angle(rotation, target_angle, ROTATION_SPEED * delta)
 		particles.gravity = Vector2(-500, 100).rotated(rotation)
 	if global_position.y < MIN_Y:
-		global_position.y = MIN_Y
+		velocity.y += 1200 * delta - 0.7 * min(0, direction.y * SPEED)
+		#global_position.y = MIN_Y
 
 	var collision = move_and_collide(velocity * delta)
 	if collision:

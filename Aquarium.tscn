@@ -52,11 +52,11 @@ position = Vector2(0, 101)
 follow_viewport_enabled = true
 
 [node name="PlayerScore" parent="CanvasLayer" instance=ExtResource("6_6v338")]
-position = Vector2(280, 0)
+position = Vector2(280, -20)
 player_name = "Diver2"
 
 [node name="PlayerScore2" parent="CanvasLayer" instance=ExtResource("6_6v338")]
-position = Vector2(1000, 0)
+position = Vector2(1000, -20)
 player_name = "Diver1"
 
 [node name="Camera2D" type="Camera2D" parent="."]
