@@ -2,6 +2,8 @@ extends Node2D
 @onready var play_again: Sprite2D = $PlayAgain
 @onready var fog: Sprite2D = $Fog
 @onready var play_again_2: Sprite2D = $PlayAgain2
+@onready var diver_1: CharacterBody2D = $Diver1
+@onready var diver_2: CharacterBody2D = $Diver2
 
 
 # Called when the node enters the scene tree for the first time.
@@ -16,7 +18,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	if Manager.ended:
+	if Manager.ended and diver_1.balloon.value + diver_2.balloon.value <= 0:
 		Engine.time_scale *= 0.957
 		fog.modulate.a = lerp(fog.modulate.a, 1.0, 0.02)
 		play_again.modulate.a = lerp(play_again.modulate.a, 1.0, 0.001)
