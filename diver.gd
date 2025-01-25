@@ -6,6 +6,7 @@ const SMOOTHNESS = 0.4
 const DRAG = 0.97
 
 const MIN_Y = 132
+@onready var particles: CPUParticles2D = $CPUParticles2D
 
 @onready var bubble = null
 @onready var balloon = $SubA2
@@ -47,6 +48,9 @@ func _physics_process(delta: float) -> void:
 
 	# Get the input direction and handle the movement/deceleration.
 	var direction := Input.get_vector(LEFT, RIGHT, UP, DOWN)
+	
+	particles.lifetime = 0.4 + 0.3 * direction.length()
+	particles.speed_scale = 1 + direction.length()
 
 	var target_velocity = velocity + direction * SPEED
 	velocity = lerp(velocity, target_velocity, SMOOTHNESS)
@@ -59,6 +63,7 @@ func _physics_process(delta: float) -> void:
 	if direction != Vector2.ZERO:
 		var target_angle = direction.angle()
 		rotation = lerp_angle(rotation, target_angle, ROTATION_SPEED * delta)
+		particles.gravity = Vector2(-500, 100).rotated(rotation)
 	if global_position.y < MIN_Y:
 		global_position.y = MIN_Y
 
